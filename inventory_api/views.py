@@ -91,7 +91,8 @@ class UpdateItem(APIView):
             if serializer.is_valid():
                 serializer.save()
             payload = {
-                "msg": "Item Updated Successfully"
+                "msg": "Item Updated Successfully",
+                'data': serializer.data
             }
             return Response(data=payload, status=status.HTTP_200_OK)
         else:

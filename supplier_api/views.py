@@ -9,8 +9,6 @@ from supplier_api.models import SupplierRecord
 from .serializers import SupplierSerializer
 
 
-
-
 # API VIEW FOR EMPLOYEE TO VIEW ALL SUPPLIERS FOR A PARTICULER ITEM
 class ViewSuppliersForAnItem(APIView):
     permission_classes = (AllowAny, )
@@ -19,12 +17,26 @@ class ViewSuppliersForAnItem(APIView):
         payload = {}
         if request.method == "POST":
             item = request.data.get('item')
+            print(item)
             get_item = ItemsRecord.objects.filter(name=item)
-            serial_data = SuppliersOfAnItemSerializer(get_item, many=True)
-            payload = {
-                'msg': serial_data.data
-            }
-            return Response(data=payload, status=status.HTTP_200_OK)
+            print(get_item)
+            if len(get_item) > 0:
+                serial_data = SuppliersOfAnItemSerializer(get_item, many=True)
+                if serial_data:
+                    payload = {
+                        'msg': serial_data.data
+                    }
+                    return Response(data=payload, status=status.HTTP_200_OK)
+                else:
+                    payload = {
+                        'msg': "No data found"
+                    }
+                    return Response(data=payload, status=status.HTTP_200_OK)
+            else:
+                payload = {
+                    'msg': "No data found"
+                }
+                return Response(data=payload, status=status.HTTP_200_OK)
         else:
             payload = {
                 'msg': 'Invalid Request'
