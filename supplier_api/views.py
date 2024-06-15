@@ -43,8 +43,10 @@ class ViewSuppliersForAnItem(APIView):
             }
             return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
 
-
+# agagag
 # API VIEW TO ADD SUPPLIER
+
+
 class AddSupplier(APIView):
     permission_classes = (AllowAny, )
 
