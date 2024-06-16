@@ -19,7 +19,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # ROOT URL FOR CREATED APPS
     path('inventory-api/', include('inventory_api.urls')),
     path('supplier-api/', include('supplier_api.urls')),
+
+    # ROOT API URL FOR BROWSER
     path('api-auth/', include('rest_framework.urls'))
 ]

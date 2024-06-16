@@ -3,6 +3,8 @@ from .models import SupplierRecord
 
 # Create your tests here.
 
+# TESTING 
+
 class SupplierRecordTestCase(TestCase):
     def setUp(self):
         SupplierRecord.objects.create(name = "james", email="dave@gmail.com", phone_number="0976564411", address="10, napast close")

@@ -4,6 +4,8 @@ from supplier_api.serializers import SupplierSerializer
 from django.contrib.auth.models import User
 
 
+# ...................... USER SERIALIZER .....................
+
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -31,6 +33,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
 
 # SERIALIZER FOR SUPPLIERS OF A SPECIFIC ITEM
+
 class SuppliersOfAnItemSerializer(serializers.ModelSerializer):
     supplier = SupplierSerializer(many=False)
 

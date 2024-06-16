@@ -11,7 +11,7 @@ from inventory_api.serializers import ItemSerializer, UserSerializer
 # Create your views here.
 
 
-# API VIEW TO CREATE EMPLOYEE ACCOUNT...
+# ....................... API VIEW TO CREATE EMPLOYEE ACCOUNT ...................
 
 
 class UserCreate(APIView):
@@ -37,9 +37,13 @@ class UserCreate(APIView):
         else:
             payload['msg'] = 'Invalid Request'
             return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
+        
 
 
-# API VIEW FOR EMPLOYEE TO SEE LIST OF ITEMS SUPPLIED BY A SUPPLIER...
+
+# ................. API VIEW FOR EMPLOYEE TO SEE LIST OF ITEMS SUPPLIED BY A SUPPLIER ...............
+
+
 class ListOfItemsByASupplier(APIView):
     permission_classes = (IsAuthenticated, )
 
@@ -64,9 +68,12 @@ class ListOfItemsByASupplier(APIView):
                 'msg': "Invalid Request"
             }
             return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
+        
 
 
-# API VIEW FOR EMPLOYEE TO VIEW ALL ITEM IN THE STORE
+# ................... API VIEW FOR EMPLOYEE TO VIEW ALL ITEM IN THE STORE .................
+
+
 class ViewAllItem(APIView):
     permission_classes = (IsAuthenticated, )
 
@@ -84,9 +91,12 @@ class ViewAllItem(APIView):
                 "msg": "Invalid Request"
             }
             return Response(data=payload, status=status.HTTP_401_BAD_REQUEST)
+        
 
 
-# API VIEW TO ADD ITEM TO THE STORE
+# .................. API VIEW TO ADD ITEM TO THE STORE ........................
+
+
 class AddItem(APIView):
     permission_classes = (AllowAny, )
 
@@ -106,9 +116,12 @@ class AddItem(APIView):
                 'msg': "Invalid Request"
             }
             return Response(data=payload, status=status.HTTP_401_BAD_REQUEST)
+        
 
 
-# API VIEW TO UPDATE ITEM IN THE STORE
+# ............... API VIEW TO UPDATE ITEM IN THE STORE ......................
+
+
 class UpdateItem(APIView):
     permission_classes = (AllowAny, )
 
@@ -129,9 +142,12 @@ class UpdateItem(APIView):
                 'msg': "Invalid Request"
             }
             return Response(data=payload, status=status.HTTP_401_BAD_REQUEST)
+        
 
 
-# API  VIEW TO REMOVE ITEM FROM THE STORE
+# .................. API  VIEW TO REMOVE ITEM FROM THE STORE ..................
+
+
 class RemoveItem(APIView):
     permission_classes = (AllowAny, )
 

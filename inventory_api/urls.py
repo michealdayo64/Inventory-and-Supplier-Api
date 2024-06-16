@@ -1,6 +1,9 @@
 from django.urls import path
 from .views import ListOfItemsByASupplier, ViewAllItem, AddItem, UpdateItem, RemoveItem, UserCreate
 
+
+# ....... ALL ROUTING URL FOR INVENTORY APP WHICH COMUNICATES WITH THE VIEWS .........
+
 urlpatterns = [
     path('supplier-list-items/<id>/', ListOfItemsByASupplier.as_view()),
     path('view-all-items/', ViewAllItem.as_view()),

@@ -5,7 +5,7 @@ from supplier_api.models import SupplierRecord
 # Create your models here.
 
 
-# Item Record Table
+# ITEM RECORD TABLE
 
 class ItemsRecord(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)

@@ -4,7 +4,9 @@ from .models import ItemsRecord
 # Create your tests here.
 
 
-class SupplierRecordTestCase(TestCase):
+# ............. TESTING FOR SYSTEM MODELS .................
+
+class ItemRecordTestCase(TestCase):
     def setUp(self):
         ItemsRecord.objects.create(
             name="rice", description="It is great", price=23.0)
