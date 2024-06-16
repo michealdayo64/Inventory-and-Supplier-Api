@@ -39,7 +39,7 @@ class UserCreate(APIView):
             return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
 
 
-# API VIEW FOR EMPLOYEE TO SEE LIST OF ITEMS SUPPLIED BY A SUPPLIER
+# API VIEW FOR EMPLOYEE TO SEE LIST OF ITEMS SUPPLIED BY A SUPPLIER...
 class ListOfItemsByASupplier(APIView):
     permission_classes = (IsAuthenticated, )
 
