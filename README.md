@@ -34,7 +34,7 @@ You will need a postman application to test the endpoints. You can download post
   request method: POST
 
  - API Endpoint for Supplier List Items
-   http://127.0.0.1:8000/inventory-api/supplier-list-items/<param>/
+   http://127.0.0.1:8000/inventory-api/supplier-list-items/params_id/
 
    request method: PUT
    header authorization: token ""
@@ -52,13 +52,13 @@ You will need a postman application to test the endpoints. You can download post
    header authorization: token ""
 
 - API Endpoint to update an Item
-  http://127.0.0.1:8000/inventory-api/update_item/1/
+  http://127.0.0.1:8000/inventory-api/update_item/params_id/
 
    request method: PUT
    header authorization: token ""
 
 - API Endpoint to delete an item
-  http://127.0.0.1:8000/inventory-api/remove_item/1/
+  http://127.0.0.1:8000/inventory-api/remove_item/params_id/
 
    request method: DELETE
    header authorization: token ""
@@ -76,7 +76,7 @@ You will need a postman application to test the endpoints. You can download post
    header authorization: token ""
 
 - API Endpoint to update supplier
-  http://127.0.0.1:8000/supplier-api/update-supplier/4/
+  http://127.0.0.1:8000/supplier-api/update-supplier/params_id/
 
    request method: PUT
    header authorization: token ""
