@@ -1,18 +1,46 @@
 from django.shortcuts import render
 from rest_framework.views import APIView  # type: ignore
-from rest_framework.permissions import AllowAny  # type: ignore
+from rest_framework.permissions import AllowAny, IsAuthenticated  # type: ignore
 from rest_framework.response import Response  # type: ignore
 from rest_framework import status  # type: ignore
+from rest_framework.authtoken.models import Token  # type: ignore
 from inventory_api.models import ItemsRecord
 from supplier_api.models import SupplierRecord
-from inventory_api.serializers import ItemSerializer
+from inventory_api.serializers import ItemSerializer, UserSerializer
 
 # Create your views here.
 
 
+# API VIEW TO CREATE EMPLOYEE ACCOUNT
+
+class UserCreate(APIView):
+    permission_classes = (AllowAny, )
+
+    def post(self, request):
+        payload = {}
+        if request.method == "POST":
+            user_data = UserSerializer(data=request.data or None)
+            if user_data.is_valid():
+                user = user_data.save()
+                user.set_password(user.password)
+                user.save()
+
+                # CREATE TOKEN
+                Token.objects.create(user=user)
+
+                payload['msg'] = "Register Successfully"
+                return Response(data=payload, status=status.HTTP_201_CREATED)
+            else:
+                payload['msg'] = "Invalid Data"
+                return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            payload['msg'] = 'Invalid Request'
+            return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
+
+
 # API VIEW FOR EMPLOYEE TO SEE LIST OF ITEMS SUPPLIED BY A SUPPLIER
 class ListOfItemsByASupplier(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def put(self, request, id):
         payload = {}
@@ -39,7 +67,7 @@ class ListOfItemsByASupplier(APIView):
 
 # API VIEW FOR EMPLOYEE TO VIEW ALL ITEM IN THE STORE
 class ViewAllItem(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def get(self, request):
         payload = {}

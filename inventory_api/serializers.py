@@ -1,6 +1,22 @@
 from rest_framework import serializers  # type: ignore
 from .models import ItemsRecord
 from supplier_api.serializers import SupplierSerializer
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = (
+            'pk',
+            'username',
+            'email',
+            'password',
+            'first_name',
+            'last_name',
+        )
+        extra_kwargs = {'password': {'write_only': True}}
 
 
 # SERIALIZER FOR ITEMS
