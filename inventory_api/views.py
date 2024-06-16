@@ -11,7 +11,8 @@ from inventory_api.serializers import ItemSerializer, UserSerializer
 # Create your views here.
 
 
-# API VIEW TO CREATE EMPLOYEE ACCOUNT
+# API VIEW TO CREATE EMPLOYEE ACCOUNT...
+
 
 class UserCreate(APIView):
     permission_classes = (AllowAny, )
