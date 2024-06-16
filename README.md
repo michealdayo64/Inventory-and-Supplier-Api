@@ -37,6 +37,32 @@ You will need a postman application to test the endpoints. You can download post
 - API Endpoint to view all items in the store
   http://127.0.0.1:8000/inventory-api/view-all-items/
 
+- API Endpoint to add Items
+  http://127.0.0.1:8000/inventory-api/add_item/
+
+- API Endpoint to update an Item
+  http://127.0.0.1:8000/inventory-api/update_item/1/
+
+- API Endpoint to delete an item
+  http://127.0.0.1:8000/inventory-api/remove_item/1/
+
+- API Endpoint to view suppliers of a particular item
+  http://127.0.0.1:8000/supplier-api/view-suppliers-item/
+
+- API Endpoint to add Supplier
+  http://127.0.0.1:8000/supplier-api/add-supplier/
+
+- API Endpoint to update supplier
+  http://127.0.0.1:8000/supplier-api/update-supplier/4/
+
+- API Endpoint to get all list of supplier
+  http://127.0.0.1:8000/supplier-api/all-supplier-list/
+
+- API Endpoint to get a supplier detail information
+  http://127.0.0.1:8000/supplier-api/all-supplier-list/
+
+
+
 
 
 
