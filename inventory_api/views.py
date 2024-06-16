@@ -27,9 +27,11 @@ class UserCreate(APIView):
                 user.save()
 
                 # CREATE TOKEN
-                Token.objects.create(user=user)
+                token = Token.objects.create(user=user)
 
-                payload['msg'] = "Register Successfully"
+                payload['msg'] = "Success"
+                payload['data'] = user_data.data
+                payload['token'] = token.key
                 return Response(data=payload, status=status.HTTP_201_CREATED)
             else:
                 payload['msg'] = "Invalid Data"
@@ -55,7 +57,8 @@ class ListOfItemsByASupplier(APIView):
             item_serializer = ItemSerializer(items, many=True)
             if item_serializer:
                 payload = {
-                    "msg": item_serializer.data
+                    "msg": 'Success',
+                    'data': item_serializer.data
                 }
                 return Response(data=payload, status=status.HTTP_200_OK)
             else:
@@ -83,7 +86,8 @@ class ViewAllItem(APIView):
             items = ItemsRecord.objects.all()
             serializer = ItemSerializer(items, many=True)
             payload = {
-                'msg': serializer.data
+                'msg': 'Success',
+                'data': serializer.data
             }
             return Response(data=payload, status=status.HTTP_200_OK)
         else:
@@ -98,7 +102,7 @@ class ViewAllItem(APIView):
 
 
 class AddItem(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         payload = {}
@@ -107,7 +111,7 @@ class AddItem(APIView):
             if serializer.is_valid():
                 serializer.save()
                 payload = {
-                    'msg': "Item Saved Successfully",
+                    'msg': "Success",
                     "data": serializer.data
                 }
                 return Response(data=payload, status=status.HTTP_201_CREATED)
@@ -123,7 +127,7 @@ class AddItem(APIView):
 
 
 class UpdateItem(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def put(self, request, id):
         payload = {}
@@ -133,7 +137,7 @@ class UpdateItem(APIView):
             if serializer.is_valid():
                 serializer.save()
             payload = {
-                "msg": "Item Updated Successfully",
+                "msg": "Success",
                 'data': serializer.data
             }
             return Response(data=payload, status=status.HTTP_200_OK)
@@ -149,7 +153,7 @@ class UpdateItem(APIView):
 
 
 class RemoveItem(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def delete(self, request, id):
         payload = {}
@@ -157,7 +161,7 @@ class RemoveItem(APIView):
             item_id = ItemsRecord.objects.get(id=id)
             item_id.delete()
             payload = {
-                "msg": "Item Removed Successfully"
+                "msg": "Success"
             }
             return Response(data=payload, status=status.HTTP_200_OK)
         else:

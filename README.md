@@ -3,6 +3,9 @@
 ## Guideline on how to setup this project on your local machine
 
 ## Step 1: 
+Clone project into your local machine. Open your terminal and paste the command: "git clone https://github.com/michealdayo64/Inventory-and-Supplier-Api"
+
+## Step 1: 
 Create virtual enviroment in your system. That's where you will install dependencies needed for this project
 - Command for windows system: "virtualenv venv"
 - Command for Mac and Linux system: "python3 -m venv venv"
@@ -23,5 +26,17 @@ Run the project
 
 ## All API Endpoint to test the project
 
-You will need a postman application to test the endpoint. You can download postman from this Link: https://www.postman.com/downloads/
+You will need a postman application to test the endpoints. You can download postman from this Link: https://www.postman.com/downloads/
+
+- User API Endpoint to view Inventory and Supplier data
+  http://127.0.0.1:8000/inventory-api/user-create/
+
+ - API Endpoint for Supplier List Items
+   http://127.0.0.1:8000/inventory-api/supplier-list-items/2/
+
+- API Endpoint to view all items in the store
+  http://127.0.0.1:8000/inventory-api/view-all-items/
+
+
+
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView  # type: ignore
-from rest_framework.permissions import AllowAny  # type: ignore
+from rest_framework.permissions import AllowAny, IsAuthenticated  # type: ignore
 from rest_framework.response import Response  # type: ignore
 from rest_framework import status  # type: ignore
 from inventory_api.models import ItemsRecord
@@ -12,7 +12,7 @@ from .serializers import SupplierSerializer
 # API VIEW FOR EMPLOYEE TO VIEW ALL SUPPLIERS FOR A PARTICULER ITEM
 
 class ViewSuppliersForAnItem(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         payload = {}
@@ -25,7 +25,8 @@ class ViewSuppliersForAnItem(APIView):
                 serial_data = SuppliersOfAnItemSerializer(get_item, many=True)
                 if serial_data:
                     payload = {
-                        'msg': serial_data.data
+                        'msg': 'Success',
+                        'data': serial_data.data
                     }
                     return Response(data=payload, status=status.HTTP_200_OK)
                 else:
@@ -49,7 +50,7 @@ class ViewSuppliersForAnItem(APIView):
 
 
 class AddSupplier(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def post(self, request):
         payload = {}
@@ -58,7 +59,7 @@ class AddSupplier(APIView):
             if serializer.is_valid():
                 serializer.save()
                 payload = {
-                    'msg': "Supplier Added Successfully",
+                    'msg': "Success",
                     'data': serializer.data
                 }
                 return Response(data=payload, status=status.HTTP_201_CREATED)
@@ -73,7 +74,7 @@ class AddSupplier(APIView):
 
 
 class UpdateSupplier(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def put(self, request, id):
         if request.method == 'PUT':
@@ -84,7 +85,8 @@ class UpdateSupplier(APIView):
             if serializer.is_valid():
                 serializer.save()
                 payload = {
-                    "msg": "Supplier Updated Successfully"
+                    "msg": "Success",
+                    'data': serializer.data
                 }
                 return Response(data=payload, status=status.HTTP_200_OK)
             else:
@@ -103,7 +105,7 @@ class UpdateSupplier(APIView):
 
 
 class AllSupplierList(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def get(self, request):
         payload = {}
@@ -113,7 +115,8 @@ class AllSupplierList(APIView):
                 serializer = SupplierSerializer(supplier_list, many=True)
                 if serializer:
                     payload = {
-                        'msg': serializer.data
+                        'msg': 'Success',
+                        'data': serializer.data
                     }
                     return Response(data=payload, status=status.HTTP_200_OK)
                 else:
@@ -137,7 +140,7 @@ class AllSupplierList(APIView):
 
 
 class DetailSupplier(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
 
     def get(self, request, id):
         if request.method == 'GET':
@@ -146,7 +149,8 @@ class DetailSupplier(APIView):
             serializer = SupplierSerializer(
                 instance=supplier_id)
             payload = {
-                "msg": serializer.data
+                "msg": 'Success',
+                'data': serializer.data
             }
             return Response(data=payload, status=status.HTTP_200_OK)
 
